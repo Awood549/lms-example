@@ -19,19 +19,21 @@ class Login extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    // e.target.reset();
+    let state = this.state
     console.log(this.state)
-    this.context.login({[this.state.username]:[this.state.password]})
+    this.context.login(state)
+    // e.target.reset();
+
     };
 
   render() {
     return (
       <>
-        <If condition={this.context.loggedIn}>
+              <If condition={this.context.loggedIn}>
           <button onClick={this.context.logout}>Log Out</button>
-        </If>
+          </If>
 
-        <If condition={!LoginContext.loggedIn}>
+          <If condition={!this.context.loggedIn}>
           <form onSubmit={this.handleSubmit}>
             <input
               placeholder="UserName"
@@ -45,7 +47,7 @@ class Login extends React.Component {
             />
             <input type="submit" value="Login" />
           </form>
-        </If>
+          </If>
       </>
     );
   }

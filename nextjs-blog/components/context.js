@@ -1,14 +1,15 @@
 import React from 'react';
-import Login from './login.js';
+// import Login from './login.js';
 
-const LoginContext = React.createContext();
+export const LoginContext = React.createContext();
+
 class LoginProvider extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       users: [
-        {'teacher': 'teach4fun'},
-        {'student': 'learn2grow'}
+        {username:'teacher', password:'teach4fun'},
+        {username:'student', password:'learn2grow'}
       ],
       loggedIn: false,
       login: this.login,
@@ -17,8 +18,9 @@ class LoginProvider extends React.Component {
   }
 
   login = user => {
-    if(user === this.state.users[0] || user === this.state.users[1])
-    this.setLoginState(true);
+    if(JSON.stringify(user)=== JSON.stringify(this.state.users[0]) || user === JSON.stringify(this.state.users[1])){ 
+      this.setLoginState(true);
+    }
   };
 
   logout = () => {
@@ -28,6 +30,7 @@ class LoginProvider extends React.Component {
   setLoginState = loggedIn => {
     this.setState({loggedIn });
   };
+
 
   render() {
     return (
