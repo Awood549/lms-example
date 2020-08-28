@@ -21,14 +21,14 @@ class Login extends React.Component {
     e.preventDefault();
     // e.target.reset();
     console.log(this.state)
-    return this.state
-  };
+    this.context.login({[this.state.username]:[this.state.password]})
+    };
 
   render() {
     return (
       <>
-        <If condition={LoginContext.loggedIn}>
-          <button onClick={LoginContext.logout}>Log Out</button>
+        <If condition={this.context.loggedIn}>
+          <button onClick={this.context.logout}>Log Out</button>
         </If>
 
         <If condition={!LoginContext.loggedIn}>

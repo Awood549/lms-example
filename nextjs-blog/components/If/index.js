@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const render = (condition = false, children = null) => {

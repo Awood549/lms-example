@@ -1,7 +1,7 @@
 import React from 'react';
+import Login from './login.js';
 
-export const LoginContext = React.createContext();
-
+const LoginContext = React.createContext();
 class LoginProvider extends React.Component {
   constructor(props) {
     super(props);
@@ -11,7 +11,6 @@ class LoginProvider extends React.Component {
         {'student': 'learn2grow'}
       ],
       loggedIn: false,
-      token: token,
       login: this.login,
       logout: this.logout,
     };
@@ -23,13 +22,11 @@ class LoginProvider extends React.Component {
   };
 
   logout = () => {
-    cookie.remove('auth');
     this.setLoginState(false);
   };
 
   setLoginState = loggedIn => {
-    let token = cookie.load('auth');
-    this.setState({ token, loggedIn });
+    this.setState({loggedIn });
   };
 
   render() {
