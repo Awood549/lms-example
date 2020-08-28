@@ -11,6 +11,7 @@ class LoginProvider extends React.Component {
         {username:'teacher', password:'teach4fun'},
         {username:'student', password:'learn2grow'}
       ],
+      currentUser:'',
       loggedIn: false,
       login: this.login,
       logout: this.logout,
@@ -18,7 +19,9 @@ class LoginProvider extends React.Component {
   }
 
   login = user => {
-    if(JSON.stringify(user)=== JSON.stringify(this.state.users[0]) || user === JSON.stringify(this.state.users[1])){ 
+    if(JSON.stringify(user)=== JSON.stringify(this.state.users[0]) || JSON.stringify(user) === JSON.stringify(this.state.users[1])){ 
+      this.state.currentUser=user.username;
+      console.log(this.state.currentUser)
       this.setLoginState(true);
     }
   };
