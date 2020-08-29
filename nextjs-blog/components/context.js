@@ -1,4 +1,5 @@
 import React from 'react';
+// import Login from './login.js';
 
 export const LoginContext = React.createContext();
 
@@ -7,30 +8,32 @@ class LoginProvider extends React.Component {
     super(props);
     this.state = {
       users: [
-        {'teacher': 'teach4fun'},
-        {'student': 'learn2grow'}
+        {username:'teacher', password:'teach4fun'},
+        {username:'student', password:'learn2grow'}
       ],
+      currentUser:'',
       loggedIn: false,
-      token: token,
       login: this.login,
       logout: this.logout,
     };
   }
 
   login = user => {
-    if(user === this.state.users[0] || user === this.state.users[1])
-    this.setLoginState(true);
+    if(JSON.stringify(user)=== JSON.stringify(this.state.users[0]) || JSON.stringify(user) === JSON.stringify(this.state.users[1])){ 
+      this.state.currentUser=user.username;
+      console.log(this.state.currentUser)
+      this.setLoginState(true);
+    }
   };
 
   logout = () => {
-    cookie.remove('auth');
     this.setLoginState(false);
   };
 
   setLoginState = loggedIn => {
-    let token = cookie.load('auth');
-    this.setState({ token, loggedIn });
+    this.setState({loggedIn });
   };
+
 
   render() {
     return (
